@@ -1,0 +1,34 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class FrequencyDictionary {
+
+    public static void main(String[] args) {
+        String text = "Пример текста для подсчета частоты букв. Текст может быть любой длины.";
+        Map<Character, Integer> frequencyMap = buildFrequencyDictionary(text);
+
+        System.out.println("Частотный словарь букв:");
+        for (Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
+    /**
+     * Метод для построения частотного словаря букв.
+     * @param text Текст, для которого строится словарь.
+     * @return Частотный словарь букв.
+     */
+    public static Map<Character, Integer> buildFrequencyDictionary(String text) {
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+
+        for (char ch : text.toCharArray()) {
+            // Пропускаем пробелы и символы, которые не являются буквами
+            if (Character.isLetter(ch)) {
+                ch = Character.toLowerCase(ch); // Приводим букву к нижнему регистру
+                frequencyMap.put(ch, frequencyMap.getOrDefault(ch, 0) + 1);
+            }
+        }
+
+        return frequencyMap;
+    }
+}
